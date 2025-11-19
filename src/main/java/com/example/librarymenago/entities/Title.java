@@ -18,15 +18,17 @@ public class Title {
             joinColumns = {@JoinColumn(name = "title_id")},
             inverseJoinColumns = {@JoinColumn(name = "author_id")})
     private Set<Author> authors;
+    private Long isbn;
 
     public Title() {
     }
 
-    public Title(String title, String description, String cover, Set<Author> authors) {
+    public Title(String title, String description, String cover, Set<Author> authors, Long isbn) {
         this.title = title;
         this.description = description;
         this.cover = cover;
         this.authors = authors;
+        this.isbn = isbn;
     }
 
     public int getId() {
@@ -67,5 +69,13 @@ public class Title {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public Long getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
     }
 }
