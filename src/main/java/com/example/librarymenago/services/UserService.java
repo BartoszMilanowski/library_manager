@@ -38,6 +38,10 @@ public class UserService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 
+    public List<User> getUsersByLastName(String lastName) {
+        return userRepository.findByLastNameIgnoreCaseContaining(lastName);
+    }
+
 
     public User addUser(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));

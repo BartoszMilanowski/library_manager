@@ -32,6 +32,11 @@ public class UserController {
         return userService.getUserByEmail(email);
     }
 
+    @GetMapping("/lastName/{lastName}")
+    public List<User> getUsersByLastName(@PathVariable("lastName") String lastName) {
+        return userService.getUsersByLastName(lastName);
+    }
+
     @PostMapping
     public User addUser(@RequestBody User user) {
         return userService.addUser(user);
