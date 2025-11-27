@@ -24,7 +24,12 @@ public class Author {
         this.lastName = lastName;
         this.bio = bio;
         this.books = books;
+    }
 
+    public Author(String firstName, String lastName, String bio) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.bio = bio;
     }
 
     public int getId() {
