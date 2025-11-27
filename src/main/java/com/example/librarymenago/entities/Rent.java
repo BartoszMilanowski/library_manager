@@ -14,16 +14,16 @@ public class Rent {
     @JoinColumn(name = "user_id")
     private User user;
     @OneToOne(cascade = CascadeType.ALL)
-    private Book book;
+    private BookCopy bookCopy;
     private Date startDate;
     private Date endDate;
 
     public Rent() {
     }
 
-    public Rent(User user, Book book, Date startDate, Date endDate) {
+    public Rent(User user, BookCopy bookCopy, Date startDate, Date endDate) {
         this.user = user;
-        this.book = book;
+        this.bookCopy = bookCopy;
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -44,12 +44,12 @@ public class Rent {
         this.user = user;
     }
 
-    public Book getBook() {
-        return book;
+    public BookCopy getBook() {
+        return bookCopy;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBook(BookCopy bookCopy) {
+        this.bookCopy = bookCopy;
     }
 
     public Date getStartDate() {

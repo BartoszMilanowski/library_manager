@@ -14,16 +14,16 @@ public class Author {
     private String lastName;
     private String bio;
     @ManyToMany(mappedBy = "authors")
-    private Set<Title> titles;
+    private Set<Book> books;
 
     public Author() {
     }
 
-    public Author(String firstName, String lastName, String bio, Set<Title> titles) {
+    public Author(String firstName, String lastName, String bio, Set<Book> books) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.bio = bio;
-        this.titles = titles;
+        this.books = books;
 
     }
 
@@ -59,11 +59,11 @@ public class Author {
         this.bio = bio;
     }
 
-    public Set<Title> getTitles() {
-        return titles;
+    public Set<Book> getTitles() {
+        return books;
     }
 
-    public void setTitles(Set<Title> titles) {
-        this.titles = titles;
+    public void setTitles(Set<Book> books) {
+        this.books = books;
     }
 }

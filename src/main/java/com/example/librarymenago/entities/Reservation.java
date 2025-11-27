@@ -14,7 +14,7 @@ public class Reservation {
     @JoinColumn(name = "user_id")
     private User user;
     @OneToOne(fetch = FetchType.LAZY)
-    private Book book;
+    private BookCopy bookCopy;
     private Date startDate;
     private Date endDate;
 
@@ -22,9 +22,9 @@ public class Reservation {
     }
 
 
-    public Reservation(User user, Book book, Date startDate, Date endDate) {
+    public Reservation(User user, BookCopy bookCopy, Date startDate, Date endDate) {
         this.user = user;
-        this.book = book;
+        this.bookCopy = bookCopy;
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -45,12 +45,12 @@ public class Reservation {
         this.user = user;
     }
 
-    public Book getBook() {
-        return book;
+    public BookCopy getBook() {
+        return bookCopy;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBook(BookCopy bookCopy) {
+        this.bookCopy = bookCopy;
     }
 
     public Date getStartDate() {

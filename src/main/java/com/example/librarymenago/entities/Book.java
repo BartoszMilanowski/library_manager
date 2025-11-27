@@ -2,23 +2,33 @@ package com.example.librarymenago.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "title_id")
-    private Title title;
-    private boolean isRent;
-    private boolean isReserved;
+    private String title;
+    private String description;
+    private String cover;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "authors_titles",
+            joinColumns = {@JoinColumn(name = "title_id")},
+            inverseJoinColumns = {@JoinColumn(name = "author_id")})
+    private Set<Author> authors;
+    private Long isbn;
 
     public Book() {
     }
 
-    public Book(Title title) {
+    public Book(String title, String description, String cover, Set<Author> authors, Long isbn) {
         this.title = title;
+        this.description = description;
+        this.cover = cover;
+        this.authors = authors;
+        this.isbn = isbn;
     }
 
     public int getId() {
@@ -29,27 +39,43 @@ public class Book {
         this.id = id;
     }
 
-    public Title getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(Title title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public boolean getIsRent() {
-        return isRent;
+    public String getDescription() {
+        return description;
     }
 
-    public void setIsRent(boolean rent) {
-        isRent = rent;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public boolean getIsReserved() {
-        return isReserved;
+    public String getCover() {
+        return cover;
     }
 
-    public void setIsReserved(boolean reserved) {
-        isReserved = reserved;
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+
+    public Long getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
     }
 }
