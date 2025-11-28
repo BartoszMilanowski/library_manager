@@ -2,10 +2,8 @@ package com.example.librarymenago.controllers;
 
 import com.example.librarymenago.entities.Author;
 import com.example.librarymenago.services.AuthorService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +30,10 @@ public class AuthorController {
     @GetMapping("/name/{lastName}")
     public List<Author> getAuthorsByLastName(@PathVariable("lastName") String lastName) {
         return authorService.getAuthorsByLastName(lastName);
+    }
+
+    @PostMapping("/add")
+    public Author addAuthor(@RequestBody Author author) {
+        return authorService.addAuthor(author);
     }
 }

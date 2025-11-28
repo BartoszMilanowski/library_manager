@@ -1,7 +1,11 @@
 package com.example.librarymenago.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,7 +17,7 @@ public class Book {
     private String title;
     private String description;
     private String cover;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(name = "authors_titles",
             joinColumns = {@JoinColumn(name = "title_id")},
             inverseJoinColumns = {@JoinColumn(name = "author_id")})
@@ -30,6 +34,15 @@ public class Book {
         this.authors = authors;
         this.isbn = isbn;
     }
+
+    public Book(String title, String description, String cover, Long isbn, Set<Author> authors) {
+        this.title = title;
+        this.description = description;
+        this.cover = cover;
+        this.authors = authors != null ? authors : new HashSet<>();
+        this.isbn = isbn;
+    }
+
 
     public int getId() {
         return id;

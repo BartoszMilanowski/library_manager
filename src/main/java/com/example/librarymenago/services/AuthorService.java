@@ -29,5 +29,9 @@ public class AuthorService {
         return authorRepository.findByLastNameIgnoreCaseContaining(lastName);
     }
 
+    public Author addAuthor(Author author) {
+        return authorRepository.save(author);
+    }
+
 
 }
