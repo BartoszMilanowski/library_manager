@@ -1,5 +1,6 @@
 package com.example.librarymenago.controllers;
 
+import com.example.librarymenago.dto.AuthorDto;
 import com.example.librarymenago.entities.Author;
 import com.example.librarymenago.services.AuthorService;
 
@@ -18,8 +19,8 @@ public class AuthorController {
     }
 
     @GetMapping
-    public List<Author> getAuthors() {
-        return authorService.getAuthors();
+    public List<AuthorDto> getAuthors() {
+        return authorService.getAuthorsDto();
     }
 
     @GetMapping("/{authorId}")

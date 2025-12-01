@@ -8,6 +8,6 @@ public record BookDto(
         String description,
         String cover,
         Long isbn,
-        Set<Integer> authorsIds
+        Set<AuthorBasicsDto> authors
 ) {
 }

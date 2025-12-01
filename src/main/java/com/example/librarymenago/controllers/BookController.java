@@ -28,13 +28,13 @@ public class BookController {
     }
 
     @GetMapping("/isbn/{isbn}")
-    public Book getBookByIsbn(@PathVariable Long isbn){
-        return bookService.getBookByIsbn(isbn);
+    public BookDto getBookByIsbn(@PathVariable Long isbn){
+        return bookService.getBookDtoByIsbn(isbn);
     }
 
     @GetMapping("/title/{title}")
-    public List<Book> getBookByTitle(@PathVariable String title){
-        return bookService.findByTitle(title);
+    public List<BookDto> getBookByTitle(@PathVariable String title){
+        return bookService.getBookDtoByTitle(title);
     }
 
     @PostMapping
