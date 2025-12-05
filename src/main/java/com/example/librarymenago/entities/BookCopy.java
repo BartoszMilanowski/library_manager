@@ -12,9 +12,11 @@ public class BookCopy {
     @JoinColumn(name = "book_id")
     private Book book;
     private String barcode;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private BookCopyStatus status;
 
-    public BookCopy(Book book, String barcode, String status) {
+    public BookCopy(Book book, String barcode, BookCopyStatus status) {
         this.book = book;
         this.barcode = barcode;
         this.status = status;
@@ -46,11 +48,11 @@ public class BookCopy {
         this.barcode = barcode;
     }
 
-    public String getStatus() {
+    public BookCopyStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(BookCopyStatus status) {
         this.status = status;
     }
 }

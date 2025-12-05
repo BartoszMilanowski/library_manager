@@ -102,58 +102,59 @@ public class DataLoader implements CommandLineRunner {
             // Tworzenie egzemplarzy BookCopy
             List<BookCopy> bookCopies = List.of(
                     // Pan Tadeusz - 5 egzemplarzy
-                    new BookCopy(book1, "PT-001", "AVAILABLE"),
-                    new BookCopy(book1, "PT-002", "AVAILABLE"),
-                    new BookCopy(book1, "PT-003", "BORROWED"),
-                    new BookCopy(book1, "PT-004", "AVAILABLE"),
-                    new BookCopy(book1, "PT-005", "DAMAGED"),
+                    new BookCopy(book1, "PT-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book1, "PT-002", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book1, "PT-003", BookCopyStatus.BORROWED),
+                    new BookCopy(book1, "PT-004", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book1, "PT-005", BookCopyStatus.DAMAGED),
 
                     // Dziady - 3 egzemplarze
-                    new BookCopy(book2, "DZ-001", "AVAILABLE"),
-                    new BookCopy(book2, "DZ-002", "AVAILABLE"),
-                    new BookCopy(book2, "DZ-003", "BORROWED"),
+                    new BookCopy(book2, "DZ-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book2, "DZ-002", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book2, "DZ-003", BookCopyStatus.BORROWED),
 
                     // Quo Vadis - 4 egzemplarze
-                    new BookCopy(book3, "QV-001", "AVAILABLE"),
-                    new BookCopy(book3, "QV-002", "AVAILABLE"),
-                    new BookCopy(book3, "QV-003", "AVAILABLE"),
-                    new BookCopy(book3, "QV-004", "BORROWED"),
+                    new BookCopy(book3, "QV-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book3, "QV-002", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book3, "QV-003", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book3, "QV-004", BookCopyStatus.BORROWED),
 
                     // Potop - 3 egzemplarze
-                    new BookCopy(book4, "PO-001", "AVAILABLE"),
-                    new BookCopy(book4, "PO-002", "DAMAGED"),
-                    new BookCopy(book4, "PO-003", "AVAILABLE"),
+                    new BookCopy(book4, "PO-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book4, "PO-002", BookCopyStatus.DAMAGED),
+                    new BookCopy(book4, "PO-003", BookCopyStatus.AVAILABLE),
 
                     // Lalka - 4 egzemplarze
-                    new BookCopy(book5, "LA-001", "AVAILABLE"),
-                    new BookCopy(book5, "LA-002", "AVAILABLE"),
-                    new BookCopy(book5, "LA-003", "BORROWED"),
-                    new BookCopy(book5, "LA-004", "AVAILABLE"),
+                    new BookCopy(book5, "LA-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book5, "LA-002", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book5, "LA-003", BookCopyStatus.BORROWED),
+                    new BookCopy(book5, "LA-004", BookCopyStatus.AVAILABLE),
 
                     // Faraon - 2 egzemplarze
-                    new BookCopy(book6, "FA-001", "AVAILABLE"),
-                    new BookCopy(book6, "FA-002", "BORROWED"),
+                    new BookCopy(book6, "FA-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book6, "FA-002", BookCopyStatus.BORROWED),
 
                     // Pozostałe książki - po 2-3 egzemplarzach
-                    new BookCopy(book7, "NN-001", "AVAILABLE"),
-                    new BookCopy(book7, "NN-002", "AVAILABLE"),
+                    new BookCopy(book7, "NN-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book7, "NN-002", BookCopyStatus.AVAILABLE),
 
-                    new BookCopy(book8, "CH-001", "AVAILABLE"),
-                    new BookCopy(book8, "CH-002", "BORROWED"),
-                    new BookCopy(book8, "CH-003", "AVAILABLE"),
+                    new BookCopy(book8, "CH-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book8, "CH-002", BookCopyStatus.BORROWED),
+                    new BookCopy(book8, "CH-003", BookCopyStatus.AVAILABLE),
 
-                    new BookCopy(book9, "FE-001", "AVAILABLE"),
-                    new BookCopy(book9, "FE-002", "AVAILABLE"),
+                    new BookCopy(book9, "FE-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book9, "FE-002", BookCopyStatus.AVAILABLE),
 
-                    new BookCopy(book10, "ZU-001", "AVAILABLE"),
-                    new BookCopy(book10, "ZU-002", "DAMAGED"),
+                    new BookCopy(book10, "ZU-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book10, "ZU-002", BookCopyStatus.DAMAGED),
 
-                    new BookCopy(book11, "WW-001", "AVAILABLE"),
-                    new BookCopy(book11, "WW-002", "AVAILABLE"),
+                    new BookCopy(book11, "WW-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book11, "WW-002", BookCopyStatus.AVAILABLE),
 
-                    new BookCopy(book12, "PPK-001", "AVAILABLE"),
-                    new BookCopy(book12, "PPK-002", "BORROWED")
+                    new BookCopy(book12, "PPK-001", BookCopyStatus.AVAILABLE),
+                    new BookCopy(book12, "PPK-002", BookCopyStatus.BORROWED)
             );
+
 
             bookCopyRepository.saveAll(bookCopies);
             System.out.println("Book copies initialized: " + bookCopies.size());
