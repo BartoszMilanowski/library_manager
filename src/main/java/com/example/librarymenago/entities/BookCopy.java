@@ -9,17 +9,18 @@ public class BookCopy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "title_id")
+    @JoinColumn(name = "book_id")
     private Book book;
-    private boolean isRent;
-    private boolean isReserved;
+    private String barcode;
+    private String status;
 
-    public BookCopy() {
-    }
-
-    public BookCopy(Book book) {
+    public BookCopy(Book book, String barcode, String status) {
         this.book = book;
+        this.barcode = barcode;
+        this.status = status;
     }
+
+    public BookCopy() {}
 
     public int getId() {
         return id;
@@ -29,27 +30,27 @@ public class BookCopy {
         this.id = id;
     }
 
-    public Book getTitle() {
+    public Book getBook() {
         return book;
     }
 
-    public void setTitle(Book book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 
-    public boolean getIsRent() {
-        return isRent;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setIsRent(boolean rent) {
-        isRent = rent;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
-    public boolean getIsReserved() {
-        return isReserved;
+    public String getStatus() {
+        return status;
     }
 
-    public void setIsReserved(boolean reserved) {
-        isReserved = reserved;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

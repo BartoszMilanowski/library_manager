@@ -1,6 +1,7 @@
 package com.example.librarymenago.controllers;
 
 import com.example.librarymenago.dto.BookDto;
+import com.example.librarymenago.dto.BookWithCopiesDto;
 import com.example.librarymenago.entities.Book;
 import com.example.librarymenago.services.BookService;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,11 @@ public class BookController {
     @GetMapping("/{bookId}")
     public BookDto getBookById(@PathVariable int bookId){
         return bookService.getBookDtoById(bookId);
+    }
+
+    @GetMapping("/{bookId}/copies")
+    public BookWithCopiesDto getBookCopies(@PathVariable int bookId){
+        return bookService.getBookWithCopiesDtoById(bookId);
     }
 
     @GetMapping("/isbn/{isbn}")

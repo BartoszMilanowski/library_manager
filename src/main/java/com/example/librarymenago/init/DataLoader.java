@@ -1,13 +1,10 @@
 package com.example.librarymenago.init;
 
-import com.example.librarymenago.entities.Author;
-import com.example.librarymenago.entities.Book;
-import com.example.librarymenago.entities.Role;
-import com.example.librarymenago.entities.User;
+import com.example.librarymenago.entities.*;
 import com.example.librarymenago.repositories.AuthorRepository;
+import com.example.librarymenago.repositories.BookCopyRepository;
 import com.example.librarymenago.repositories.BookRepository;
 import com.example.librarymenago.repositories.UserRepository;
-import com.example.librarymenago.services.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -22,20 +19,21 @@ public class DataLoader implements CommandLineRunner {
     private final UserRepository userRepository;
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final BookCopyRepository bookCopyRepository;
 
 
-    public DataLoader(PasswordEncoder passwordEncoder, UserRepository userRepository, AuthorRepository authorRepository, BookRepository bookRepository) {
+    public DataLoader(PasswordEncoder passwordEncoder, UserRepository userRepository, AuthorRepository authorRepository, BookRepository bookRepository, BookCopyRepository bookCopyRepository) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.bookCopyRepository = bookCopyRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
         if (userRepository.count() == 0) {
-
             User user1 = new User("admin1@example.com", passwordEncoder.encode("pass1"), "Jan", "Kowalski", Role.ADMIN);
             User user2 = new User("admin2@example.com", passwordEncoder.encode("pass2"), "Anna", "Nowak", Role.ADMIN);
             User user3 = new User("user1@example.com", passwordEncoder.encode("pass3"), "Piotr", "Wiśniewski", Role.USER);
@@ -43,11 +41,11 @@ public class DataLoader implements CommandLineRunner {
             User user5 = new User("user3@example.com", passwordEncoder.encode("pass5"), "Michał", "Kaczmarek", Role.USER);
 
             userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
-            System.out.println("User has been saved");
+            System.out.println("Users have been saved");
         }
 
         if (authorRepository.count() == 0 && bookRepository.count() == 0) {
-            // Tworzenie autorów (jak wcześniej)
+            // Autorzy
             Author mickiewicz = new Author("Adam", "Mickiewicz", "Polski poeta romantyczny.");
             Author sienkiewicz = new Author("Henryk", "Sienkiewicz", "Laureat Nobla.");
             Author prus = new Author("Bolesław", "Prus", "Autor Lalki.");
@@ -59,11 +57,13 @@ public class DataLoader implements CommandLineRunner {
             Author rozewicz = new Author("Tadeusz", "Różewicz", "Poeta XX wieku.");
             Author tokarczuk = new Author("Olga", "Tokarczuk", "Laureatka Nobla.");
 
-            // Zapisz autorów (książki zapiszą się przez cascade)
-            List<Author> authors = List.of(mickiewicz, sienkiewicz, prus, orzeszkowa, reymont, gombrowicz, milosz, szymborska, rozewicz, tokarczuk);
+            List<Author> authors = List.of(
+                    mickiewicz, sienkiewicz, prus, orzeszkowa, reymont,
+                    gombrowicz, milosz, szymborska, rozewicz, tokarczuk
+            );
             authorRepository.saveAll(authors);
 
-            // Książki z przypisanymi autorami
+            // Książki
             Book book1 = new Book("Pan Tadeusz", "Epopeja narodowa", "pan_tadeusz.jpg", 9788370209557L, Set.of(mickiewicz));
             Book book2 = new Book("Dziady", "Dramat romantyczny", "dziady.jpg", 9788307017773L, Set.of(mickiewicz));
 
@@ -83,19 +83,84 @@ public class DataLoader implements CommandLineRunner {
 
             Book book11 = new Book("Wołanie wołosza", "Poezja, Nobel 1996", "wolanie_wołosza.jpg", 9788370200219L, Set.of(szymborska));
 
-            Book book12 = new Book("Prowadź swój pług przez kości umarłych", "Ekothriller, Nobel 2018", "plow_przez_kosci.jpg", 9788360067890L, Set.of(tokarczuk));
+            Book book12 = new Book(
+                    "Prowadź swój pług przez kości umarłych",
+                    "Ekothriller, Nobel 2018",
+                    "plow_przez_kosci.jpg",
+                    9788360067890L,
+                    Set.of(tokarczuk)
+            );
 
-            List<Book> books = List.of(book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12);
-
-
+            List<Book> books = List.of(
+                    book1, book2, book3, book4, book5, book6,
+                    book7, book8, book9, book10, book11, book12
+            );
 
             bookRepository.saveAll(books);
-
             System.out.println("Books and authors saved");
+
+            // Tworzenie egzemplarzy BookCopy
+            List<BookCopy> bookCopies = List.of(
+                    // Pan Tadeusz - 5 egzemplarzy
+                    new BookCopy(book1, "PT-001", "AVAILABLE"),
+                    new BookCopy(book1, "PT-002", "AVAILABLE"),
+                    new BookCopy(book1, "PT-003", "BORROWED"),
+                    new BookCopy(book1, "PT-004", "AVAILABLE"),
+                    new BookCopy(book1, "PT-005", "DAMAGED"),
+
+                    // Dziady - 3 egzemplarze
+                    new BookCopy(book2, "DZ-001", "AVAILABLE"),
+                    new BookCopy(book2, "DZ-002", "AVAILABLE"),
+                    new BookCopy(book2, "DZ-003", "BORROWED"),
+
+                    // Quo Vadis - 4 egzemplarze
+                    new BookCopy(book3, "QV-001", "AVAILABLE"),
+                    new BookCopy(book3, "QV-002", "AVAILABLE"),
+                    new BookCopy(book3, "QV-003", "AVAILABLE"),
+                    new BookCopy(book3, "QV-004", "BORROWED"),
+
+                    // Potop - 3 egzemplarze
+                    new BookCopy(book4, "PO-001", "AVAILABLE"),
+                    new BookCopy(book4, "PO-002", "DAMAGED"),
+                    new BookCopy(book4, "PO-003", "AVAILABLE"),
+
+                    // Lalka - 4 egzemplarze
+                    new BookCopy(book5, "LA-001", "AVAILABLE"),
+                    new BookCopy(book5, "LA-002", "AVAILABLE"),
+                    new BookCopy(book5, "LA-003", "BORROWED"),
+                    new BookCopy(book5, "LA-004", "AVAILABLE"),
+
+                    // Faraon - 2 egzemplarze
+                    new BookCopy(book6, "FA-001", "AVAILABLE"),
+                    new BookCopy(book6, "FA-002", "BORROWED"),
+
+                    // Pozostałe książki - po 2-3 egzemplarzach
+                    new BookCopy(book7, "NN-001", "AVAILABLE"),
+                    new BookCopy(book7, "NN-002", "AVAILABLE"),
+
+                    new BookCopy(book8, "CH-001", "AVAILABLE"),
+                    new BookCopy(book8, "CH-002", "BORROWED"),
+                    new BookCopy(book8, "CH-003", "AVAILABLE"),
+
+                    new BookCopy(book9, "FE-001", "AVAILABLE"),
+                    new BookCopy(book9, "FE-002", "AVAILABLE"),
+
+                    new BookCopy(book10, "ZU-001", "AVAILABLE"),
+                    new BookCopy(book10, "ZU-002", "DAMAGED"),
+
+                    new BookCopy(book11, "WW-001", "AVAILABLE"),
+                    new BookCopy(book11, "WW-002", "AVAILABLE"),
+
+                    new BookCopy(book12, "PPK-001", "AVAILABLE"),
+                    new BookCopy(book12, "PPK-002", "BORROWED")
+            );
+
+            bookCopyRepository.saveAll(bookCopies);
+            System.out.println("Book copies initialized: " + bookCopies.size());
+
         }
-
-
     }
+
 
 
 }
