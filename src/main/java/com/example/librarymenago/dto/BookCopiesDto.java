@@ -1,7 +1,9 @@
 package com.example.librarymenago.dto;
 
+import com.example.librarymenago.entities.BookCopyStatus;
+
 public record BookCopiesDto(
         int id,
         String barcode,
-        com.example.librarymenago.entities.BookCopyStatus status
+        BookCopyStatus status
 ) {}

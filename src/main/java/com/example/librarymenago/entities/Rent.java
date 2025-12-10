@@ -2,6 +2,7 @@ package com.example.librarymenago.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,8 +18,8 @@ public class Rent {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_copy_id")
     private BookCopy bookCopy;
-    private LocalDateTime rentDate;
-    private LocalDateTime returnDate;
+    private LocalDate rentDate;
+    private LocalDate returnDate;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RentStatus status;
@@ -26,7 +27,7 @@ public class Rent {
     public Rent() {
     }
 
-    public Rent(User user, BookCopy bookCopy, LocalDateTime rentDate, LocalDateTime returnDate, RentStatus status) {
+    public Rent(User user, BookCopy bookCopy, LocalDate rentDate, LocalDate returnDate, RentStatus status) {
         this.user = user;
         this.bookCopy = bookCopy;
         this.rentDate = rentDate;
@@ -58,19 +59,19 @@ public class Rent {
         this.bookCopy = bookCopy;
     }
 
-    public LocalDateTime getRentDate() {
+    public LocalDate getRentDate() {
         return rentDate;
     }
 
-    public void setRentDate(LocalDateTime rentDate) {
+    public void setRentDate(LocalDate rentDate) {
         this.rentDate = rentDate;
     }
 
-    public LocalDateTime getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(LocalDateTime returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 
