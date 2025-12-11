@@ -50,4 +50,8 @@ public class RentService {
         return rentRepository.findByBookCopyId(bookCopyId);
     }
 
+    public List<Rent> findByUserId(Integer userId) {
+        return rentRepository.findByUserId(userId);
+    }
+
 }

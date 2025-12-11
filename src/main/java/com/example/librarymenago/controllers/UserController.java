@@ -2,6 +2,7 @@ package com.example.librarymenago.controllers;
 
 import com.example.librarymenago.entities.User;
 import com.example.librarymenago.services.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,5 +41,19 @@ public class UserController {
     public User addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
+
+    @PutMapping("/{userId}")
+    public User updateUser(@PathVariable("userId") int id, @RequestBody User user) {
+        return userService.updateUser(id, user);
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("userId") int id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+
+    }
+
+
 
 }
