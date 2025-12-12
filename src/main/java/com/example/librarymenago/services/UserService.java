@@ -17,7 +17,7 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     private RentService rentService;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder,  RentService rentService) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, RentService rentService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.rentService = rentService;
@@ -42,12 +42,12 @@ public class UserService {
     }
 
 
-    public User addUser(@RequestBody User user) {
+    public User addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
-    public void updateUser(int id, @RequestBody User user) {
+    public void updateUser(int id, User user) {
         User currentUser = getUserById(id);
 
         currentUser.setFirstName(user.getFirstName());
@@ -64,11 +64,11 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
 
-        if(!rentService.findByUserId(id).isEmpty()){
-        throw new ResponseStatusException(
-                HttpStatus.CONFLICT,
-                "User has rents"
-        );
+        if (!rentService.findByUserId(id).isEmpty()) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "User has rents"
+            );
         }
 
         userRepository.deleteById(id);

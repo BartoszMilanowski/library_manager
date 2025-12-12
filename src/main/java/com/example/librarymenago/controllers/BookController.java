@@ -1,12 +1,18 @@
 package com.example.librarymenago.controllers;
 
 import com.example.librarymenago.dto.BookDto;
+import com.example.librarymenago.dto.BookWithAuthorIdDto;
 import com.example.librarymenago.dto.BookWithCopiesDto;
+import com.example.librarymenago.entities.Author;
 import com.example.librarymenago.entities.Book;
 import com.example.librarymenago.services.BookService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/books")
@@ -43,10 +49,20 @@ public class BookController {
         return bookService.getBookDtoByTitle(title);
     }
 
-    @PostMapping
-    public Book createBook(@RequestBody Book book){
-        return bookService.addBook(book);
+    @PostMapping("/add")
+    public ResponseEntity<Map<String, Integer>> createBook(@RequestBody BookWithAuthorIdDto book){
+
+        Book createdBook = bookService.addBook(book);
+        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("createdId", createdBook.getId()));
     }
+
+    @PutMapping("/edit/{bookId}")
+    public ResponseEntity<Map<String, Integer>> updateBook(@PathVariable int bookId, @RequestBody BookWithAuthorIdDto book){
+        bookService.updateBook(bookId, book);
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of("updatedId", bookId));
+    }
+
+
 
 
 }

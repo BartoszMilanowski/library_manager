@@ -45,14 +45,14 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("createdId", addedUser.getId()));
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/edit/{userId}")
     public ResponseEntity<Map<String, Integer>> updateUser(@PathVariable("userId") int id, @RequestBody User user) {
         userService.updateUser(id, user);
         return ResponseEntity.ok(Map.of("updatedId", id));
 
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/delete/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable("userId") int id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();

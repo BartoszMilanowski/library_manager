@@ -28,12 +28,12 @@ public class AuthorController {
     }
 
     @GetMapping("/{authorId}")
-    public AuthorDto getAuthorById(@PathVariable("authorId") int authorId) {
+    public AuthorDto getAuthorById(@PathVariable int authorId) {
         return authorService.getAuthorById(authorId);
     }
 
     @GetMapping("/name/{lastName}")
-    public List<Author> getAuthorsByLastName(@PathVariable("lastName") String lastName) {
+    public List<Author> getAuthorsByLastName(@PathVariable String lastName) {
         return authorService.getAuthorsByLastName(lastName);
     }
 
@@ -43,8 +43,8 @@ public class AuthorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("createdId", addedAuthor.getId()));
     }
 
-    @PutMapping("/{authorId}")
-    public ResponseEntity<Map<String, Integer>> updateAuthor(@PathVariable("authorId") int authorId, @RequestBody Author author) {
+    @PutMapping("/edit/{authorId}")
+    public ResponseEntity<Map<String, Integer>> updateAuthor(@PathVariable int authorId, @RequestBody Author author) {
        authorService.updateAuthor(author, authorId);
        return ResponseEntity.ok(Map.of("UpdatedId", author.getId()));
     }

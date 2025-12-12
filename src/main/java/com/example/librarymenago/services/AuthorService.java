@@ -75,7 +75,7 @@ public class AuthorService {
         return authorRepository.save(author);
     }
 
-    public void updateAuthor(@RequestBody Author author, int id) {
+    public void updateAuthor(Author author, int id) {
         Author currentAuthor = authorRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Author not found"));
 
         currentAuthor.setFirstName(author.getFirstName());
