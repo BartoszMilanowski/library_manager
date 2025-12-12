@@ -1,5 +1,7 @@
-package com.example.librarymenago.dto;
+package com.example.librarymenago.dto.rentDtos;
 
+import com.example.librarymenago.dto.userDtos.UserDto;
+import com.example.librarymenago.dto.bookDtos.BookCopyToRentDto;
 import com.example.librarymenago.entities.Rent;
 
 import java.time.LocalDate;

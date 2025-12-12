@@ -1,8 +1,8 @@
 package com.example.librarymenago.controllers;
 
-import com.example.librarymenago.dto.BookDto;
-import com.example.librarymenago.dto.BookWithAuthorIdDto;
-import com.example.librarymenago.dto.BookWithCopiesDto;
+import com.example.librarymenago.dto.bookDtos.BookDto;
+import com.example.librarymenago.dto.bookDtos.BookWithAuthorIdDto;
+import com.example.librarymenago.dto.bookDtos.BookWithCopiesDto;
 import com.example.librarymenago.entities.Book;
 import com.example.librarymenago.services.BookService;
 import org.springframework.http.HttpStatus;

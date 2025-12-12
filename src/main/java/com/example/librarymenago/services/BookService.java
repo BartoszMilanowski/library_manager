@@ -1,6 +1,10 @@
 package com.example.librarymenago.services;
 
-import com.example.librarymenago.dto.*;
+import com.example.librarymenago.dto.authorDtos.AuthorBasicsDto;
+import com.example.librarymenago.dto.bookDtos.BookCopiesDto;
+import com.example.librarymenago.dto.bookDtos.BookDto;
+import com.example.librarymenago.dto.bookDtos.BookWithAuthorIdDto;
+import com.example.librarymenago.dto.bookDtos.BookWithCopiesDto;
 import com.example.librarymenago.entities.Author;
 import com.example.librarymenago.entities.Book;
 import com.example.librarymenago.entities.BookCopy;

@@ -1,6 +1,6 @@
 package com.example.librarymenago.controllers;
 
-import com.example.librarymenago.dto.AuthorDto;
+import com.example.librarymenago.dto.authorDtos.AuthorDto;
 import com.example.librarymenago.entities.Author;
 import com.example.librarymenago.services.AuthorService;
 

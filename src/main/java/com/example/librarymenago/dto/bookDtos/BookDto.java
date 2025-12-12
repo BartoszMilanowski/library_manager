@@ -1,4 +1,6 @@
-package com.example.librarymenago.dto;
+package com.example.librarymenago.dto.bookDtos;
+
+import com.example.librarymenago.dto.authorDtos.AuthorBasicsDto;
 
 import java.util.Set;
 

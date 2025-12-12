@@ -1,8 +1,10 @@
 package com.example.librarymenago.controllers;
 
-import com.example.librarymenago.dto.RentDto;
+import com.example.librarymenago.dto.rentDtos.RentByUserDto;
+import com.example.librarymenago.dto.rentDtos.RentDto;
 import com.example.librarymenago.services.RentService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +24,13 @@ public class RentController {
     public List<RentDto> findAll() {
         return rentService.findAll();
     }
+
+    @GetMapping("/user/{userId}")
+    public List<RentByUserDto> findByUserId(@PathVariable int userId) {
+        return rentService.findRentDtoByUserId(userId);
+    }
+
+
 
 
 

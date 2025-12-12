@@ -1,8 +1,9 @@
 package com.example.librarymenago.services;
 
-import com.example.librarymenago.dto.BookCopyToRentDto;
-import com.example.librarymenago.dto.RentDto;
-import com.example.librarymenago.dto.UserDto;
+import com.example.librarymenago.dto.bookDtos.BookCopyToRentDto;
+import com.example.librarymenago.dto.rentDtos.RentByUserDto;
+import com.example.librarymenago.dto.rentDtos.RentDto;
+import com.example.librarymenago.dto.userDtos.UserDto;
 import com.example.librarymenago.entities.Rent;
 import com.example.librarymenago.repositories.RentRepository;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class RentService {
     }
 
     public List<RentDto> findAll() {
-        return  rentRepository.findAll().stream()
+        return rentRepository.findAll().stream()
                 .map(rent -> new RentDto(
                         rent.getId(),
                         new UserDto(
@@ -41,16 +42,24 @@ public class RentService {
                 .toList();
     }
 
-    public Rent findById(Integer id) {
-        return rentRepository.findById(id).get();
-    }
-
-    public List<Rent> findByBookCopyId(Integer bookCopyId) {
-        return rentRepository.findByBookCopyId(bookCopyId);
-    }
-
     public List<Rent> findByUserId(Integer userId) {
         return rentRepository.findByUserId(userId);
+    }
+
+    public List<RentByUserDto> findRentDtoByUserId(Integer userId) {
+        return rentRepository.findByUserId(userId).stream()
+                .map(rent -> new RentByUserDto(
+                        rent.getId(),
+                        new BookCopyToRentDto(
+                                rent.getBookCopy().getId(),
+                                rent.getBookCopy().getBook().getId(),
+                                rent.getBookCopy().getBook().getTitle(),
+                                rent.getBookCopy().getBarcode()
+                        ),
+                        rent.getRentDate(),
+                        rent.getReturnDate(),
+                        rent.getStatus()
+                )).toList();
     }
 
 }

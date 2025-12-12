@@ -1,4 +1,4 @@
-package com.example.librarymenago.dto;
+package com.example.librarymenago.dto.bookDtos;
 
 public record BookCopyToRentDto(
         int id,
