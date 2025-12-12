@@ -2,10 +2,12 @@ package com.example.librarymenago.controllers;
 
 import com.example.librarymenago.entities.User;
 import com.example.librarymenago.services.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -38,13 +40,16 @@ public class UserController {
     }
 
     @PostMapping
-    public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    public ResponseEntity<Map<String, Integer>> addUser(@RequestBody User user) {
+        User addedUser = userService.addUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("createdId", addedUser.getId()));
     }
 
     @PutMapping("/{userId}")
-    public User updateUser(@PathVariable("userId") int id, @RequestBody User user) {
-        return userService.updateUser(id, user);
+    public ResponseEntity<Map<String, Integer>> updateUser(@PathVariable("userId") int id, @RequestBody User user) {
+        userService.updateUser(id, user);
+        return ResponseEntity.ok(Map.of("updatedId", id));
+
     }
 
     @DeleteMapping("/{userId}")

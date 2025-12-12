@@ -47,7 +47,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User updateUser(int id, @RequestBody User user) {
+    public void updateUser(int id, @RequestBody User user) {
         User currentUser = getUserById(id);
 
         currentUser.setFirstName(user.getFirstName());
@@ -56,7 +56,7 @@ public class UserService {
         currentUser.setPassword(user.getPassword());
         currentUser.setRole(user.getRole());
 
-        return userRepository.save(currentUser);
+        userRepository.save(currentUser);
     }
 
     public void deleteUser(int id) {

@@ -4,9 +4,13 @@ import com.example.librarymenago.dto.AuthorDto;
 import com.example.librarymenago.entities.Author;
 import com.example.librarymenago.services.AuthorService;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/authors")
@@ -24,7 +28,7 @@ public class AuthorController {
     }
 
     @GetMapping("/{authorId}")
-    public Author getAuthorById(@PathVariable("authorId") int authorId) {
+    public AuthorDto getAuthorById(@PathVariable("authorId") int authorId) {
         return authorService.getAuthorById(authorId);
     }
 
@@ -34,7 +38,15 @@ public class AuthorController {
     }
 
     @PostMapping("/add")
-    public Author addAuthor(@RequestBody Author author) {
-        return authorService.addAuthor(author);
+    public ResponseEntity<Map<String, Integer>> addAuthor(@RequestBody Author author) {
+        Author addedAuthor = authorService.addAuthor(author);
+        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("createdId", addedAuthor.getId()));
     }
+
+    @PutMapping("/{authorId}")
+    public ResponseEntity<Map<String, Integer>> updateAuthor(@PathVariable("authorId") int authorId, @RequestBody Author author) {
+       authorService.updateAuthor(author, authorId);
+       return ResponseEntity.ok(Map.of("UpdatedId", author.getId()));
+    }
+
 }
