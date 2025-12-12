@@ -1,8 +1,6 @@
 package com.example.librarymenago.controllers;
 
 import com.example.librarymenago.dto.RentDto;
-import com.example.librarymenago.entities.Rent;
-import com.example.librarymenago.repositories.RentRepository;
 import com.example.librarymenago.services.RentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

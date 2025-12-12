@@ -5,5 +5,4 @@ public record BookCopyToRentDto(
         int bookId,
         String bookTitle,
         String barcode
-) {
-}
+) {}

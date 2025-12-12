@@ -1,6 +1,5 @@
 package com.example.librarymenago.services;
 
-import com.example.librarymenago.dto.BookCopiesDto;
 import com.example.librarymenago.dto.BookCopyToRentDto;
 import com.example.librarymenago.dto.RentDto;
 import com.example.librarymenago.dto.UserDto;

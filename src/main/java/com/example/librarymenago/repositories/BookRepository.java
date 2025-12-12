@@ -1,6 +1,5 @@
 package com.example.librarymenago.repositories;
 
-import com.example.librarymenago.entities.Author;
 import com.example.librarymenago.entities.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,6 +1,5 @@
 package com.example.librarymenago.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Set;

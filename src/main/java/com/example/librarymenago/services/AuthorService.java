@@ -2,12 +2,10 @@ package com.example.librarymenago.services;
 
 import com.example.librarymenago.dto.AuthorDto;
 import com.example.librarymenago.dto.BookBasicDto;
-import com.example.librarymenago.dto.BookDto;
 import com.example.librarymenago.entities.Author;
 import com.example.librarymenago.repositories.AuthorRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;

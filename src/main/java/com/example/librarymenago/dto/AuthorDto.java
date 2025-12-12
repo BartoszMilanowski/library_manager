@@ -8,5 +8,4 @@ public record AuthorDto(
         String lastName,
         String bio,
         Set<BookBasicDto> books
-) {
-}
+) {}

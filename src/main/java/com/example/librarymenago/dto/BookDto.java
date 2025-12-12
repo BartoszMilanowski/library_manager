@@ -9,5 +9,4 @@ public record BookDto(
         String cover,
         Long isbn,
         Set<AuthorBasicsDto> authors
-) {
-}
+) {}

@@ -10,5 +10,4 @@ public record BookWithCopiesDto(
         Long isbn,
         Set<AuthorBasicsDto> authors,
         Set<BookCopiesDto> copies
-) {
-}
+) {}

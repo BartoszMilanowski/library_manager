@@ -3,14 +3,12 @@ package com.example.librarymenago.controllers;
 import com.example.librarymenago.dto.BookDto;
 import com.example.librarymenago.dto.BookWithAuthorIdDto;
 import com.example.librarymenago.dto.BookWithCopiesDto;
-import com.example.librarymenago.entities.Author;
 import com.example.librarymenago.entities.Book;
 import com.example.librarymenago.services.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

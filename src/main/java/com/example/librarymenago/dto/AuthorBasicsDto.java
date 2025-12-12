@@ -4,5 +4,4 @@ public record AuthorBasicsDto(
         int id,
         String firstName,
         String lastName
-) {
-}
+) {}
